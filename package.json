@@ -1,0 +1,47 @@
+{
+  "name": "agentswap-root",
+  "version": "1.0.0",
+  "description": "AgentSwap — Autonomous On-Chain Labor Economy · Turing Test Hackathon 2026 · Track 6",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test:contracts": "hardhat test tests/contracts/SimpleEconomy.test.js",
+    "test:agents": "cd agent-core && npx jest --testPathPattern=tests/agents",
+    "test": "npm run test:contracts && npm run test:agents",
+    "deploy": "hardhat run contracts/migrations/1_deploy.js --network mantle_sepolia",
+    "deploy:local": "hardhat run contracts/migrations/1_deploy.js --network hardhat",
+    "mint": "cd agent-core && npx ts-node --transpile-only ../scripts/mint-identity.ts",
+    "fund": "cd agent-core && npx ts-node --transpile-only ../scripts/fund-wallets.ts",
+    "worker": "bash scripts/start-worker.sh",
+    "consumer": "bash scripts/start-consumer.sh",
+    "demo": "bash scripts/demo-loop.sh",
+    "dashboard": "cd dashboard && npm run dev",
+    "node": "hardhat node"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.7",
+    "@nomicfoundation/hardhat-ethers": "^3.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.9",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.14.0",
+    "chai": "^4.4.1",
+    "hardhat": "^2.22.5",
+    "hardhat-gas-reporter": "^1.0.10",
+    "solidity-coverage": "^0.8.12",
+    "ts-node": "^10.9.2",
+    "typechain": "^8.3.2",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target":           "ES2020",
+    "module":           "commonjs",
+    "lib":              ["ES2020"],
+    "strict":           true,
+    "esModuleInterop":  true,
+    "skipLibCheck":     true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "outDir":           "./dist",
+    "rootDir":          ".",
+    "declaration":      true,
+    "declarationMap":   true,
+    "sourceMap":        true,
+    "noUnusedLocals":   false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl":          ".",
+    "paths": {
+      "@shared/*": ["agent-core/shared/*"]
+    }
+  },
+  "include": [
+    "agent-core/**/*.ts",
+    "scripts/**/*.ts",
+    "tests/agents/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dashboard",
+    "dist",
+    "artifacts",
+    "cache",
+    "typechain-types"
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "require":       ["dotenv/config"]
+  }
+}

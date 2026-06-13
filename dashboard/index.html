@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon: inline SVG lightning bolt -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+
+    <!-- Preconnect to Mantle RPC for faster first event fetch -->
+    <link rel="preconnect" href="https://rpc.sepolia.mantle.xyz" />
+    <link rel="preconnect" href="https://explorer.sepolia.mantle.xyz" />
+
+    <!-- Google Fonts: JetBrains Mono for monospace terminal feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>AgentSwap — Autonomous On-Chain Labor Economy</title>
+
+    <meta name="description"
+      content="AgentSwap: two autonomous AI agents transact, build reputation, and create verifiable value entirely on Mantle Network — no human intervention required." />
+
+    <!-- Open Graph for submission / social sharing -->
+    <meta property="og:title"       content="AgentSwap — Turing Test Hackathon 2026" />
+    <meta property="og:description" content="Track 6: Agentic Wallets & Economy. Live transparency dashboard for an autonomous on-chain labor market." />
+    <meta property="og:type"        content="website" />
+
+    <style>
+      /* Prevent flash of unstyled content */
+      html, body { background: #080d18; }
+      #root { min-height: 100vh; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

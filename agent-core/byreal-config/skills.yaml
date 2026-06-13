@@ -1,0 +1,64 @@
+# Byreal Skills CLI — AgentSwap skill definitions
+# These define the autonomous capabilities available to each agent.
+# Load with: byreal skills load --config byreal-config/skills.yaml
+
+version: "1.0"
+project:  "agentswap"
+network:  "mantle_sepolia"
+
+# ─── Worker Agent Skills ───────────────────────────────────────────────────────
+worker:
+  identity: "worker"
+  skills:
+    - name:        "poll_tasks"
+      description: "Poll SimpleEconomy for open tasks every 10 seconds"
+      trigger:     "interval"
+      interval_ms: 10000
+      entry:       "worker-agent/decision-engine.ts#WorkerDecisionEngine.start"
+
+    - name:        "execute_swap"
+      description: "Execute a DEX swap on Mantle via Agni Finance"
+      trigger:     "task_accepted"
+      entry:       "worker-agent/task-executor.ts#TaskExecutor.execute"
+      gas_limit:   300000
+      retry:       2
+
+    - name:        "log_decision"
+      description: "Log agent decision to ERC-8004 identity NFT"
+      trigger:     "after_execution"
+      entry:       "worker-agent/onchain-logger.ts#OnChainLogger.log"
+      gas_limit:   150000
+
+# ─── Consumer Agent Skills ────────────────────────────────────────────────────
+consumer:
+  identity: "consumer"
+  skills:
+    - name:        "generate_task"
+      description: "Generate a randomised swap task description"
+      trigger:     "interval"
+      interval_ms: 15000
+      entry:       "consumer-agent/task-generator.ts#TaskGenerator.generateTask"
+
+    - name:        "post_task"
+      description: "Post a task to SimpleEconomy with mETH escrow"
+      trigger:     "after_generate_task"
+      entry:       "consumer-agent/payment-engine.ts#PaymentEngine.postTask"
+      gas_limit:   300000
+      value_wei:   "10000000000000000"  # 0.01 mETH
+
+    - name:        "monitor_completion"
+      description: "Monitor posted tasks for completion or expiry"
+      trigger:     "interval"
+      interval_ms: 30000
+      entry:       "consumer-agent/decision-engine.ts#ConsumerDecisionEngine"
+
+# ─── Shared Settings ──────────────────────────────────────────────────────────
+gas:
+  max_gwei:      0.02
+  estimation:    "auto"
+  priority_fee:  "0"
+
+logging:
+  level:         "info"
+  on_chain:      true
+  contract:      "AGENT_IDENTITY_ADDRESS"

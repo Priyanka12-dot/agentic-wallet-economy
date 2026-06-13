@@ -1,0 +1,33 @@
+{
+  "name": "agentswap-agent-core",
+  "version": "1.0.0",
+  "description": "AgentSwap autonomous agent runtime — Worker & Consumer agents for the Turing Test Hackathon",
+  "private": true,
+  "scripts": {
+    "worker":        "ts-node worker-agent/index.ts",
+    "consumer":      "ts-node consumer-agent/index.ts",
+    "mint-identity": "ts-node ../scripts/mint-identity.ts",
+    "fund-wallets":  "ts-node ../scripts/fund-wallets.ts",
+    "test":          "jest --testPathPattern=tests/agents"
+  },
+  "dependencies": {
+    "ethers":     "^6.13.0",
+    "dotenv":     "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node":  "^20.14.0",
+    "typescript":   "^5.4.5",
+    "ts-node":      "^10.9.2",
+    "jest":         "^29.7.0",
+    "@types/jest":  "^29.5.12",
+    "ts-jest":      "^29.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "jest": {
+    "preset":          "ts-jest",
+    "testEnvironment": "node",
+    "testMatch":       ["**/tests/agents/**/*.test.ts"]
+  }
+}
