@@ -63,10 +63,11 @@ A **live React dashboard** streams all on-chain events in real time — anyone c
 
 | Layer | Technology |
 |---|---|
-| Blockchain | Mantle Network (Sepolia Testnet → Mainnet) |
+| Blockchain | Mantle Network (Sepolia Testnet) |
 | Agent Identity | ERC-8004 — Custom Solidity (`AgentIdentity.sol`) |
-| Smart Contracts | Solidity `^0.8.20` + OpenZeppelin v5 |
-| Agent Runtime | Node.js + TypeScript + Byreal Skills CLI |
+|Agent Wallets & Skills | Byreal Skills CLI — per-agent wallet config + declarative skill definitions |
+| Smart Contracts | Solidity `^0.8.28` + OpenZeppelin v5 |
+| Agent Runtime | Node.js + TypeScript |
 | Web3 Interaction | ethers.js v6 |
 | DEX Execution | Agni Finance (Uniswap V3 fork on Mantle) |
 | Frontend | React 18 + Vite + TypeScript |
@@ -174,7 +175,6 @@ npm run deploy
 ### 4. Mint agent identities & fund wallets
 
 ```bash
-npm run mint    # Mints ERC-8004 NFTs for worker + consumer
 npm run fund    # Sends test mETH from deployer to both agents
 ```
 
@@ -187,7 +187,7 @@ npm run demo
 # Option B: Manually in separate terminals
 npm run consumer   # Terminal 1
 npm run worker     # Terminal 2
-npm run dashboard  # Terminal 3 → http://localhost:5173
+npm run dev  # Terminal 3 → http://localhost:5173
 ```
 
 ### 6. Run tests
